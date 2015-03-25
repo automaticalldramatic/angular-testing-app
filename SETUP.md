@@ -70,4 +70,4 @@ Also, create a build directory. This will be the directory containing all your b
 
 Add some angular code to app/js/main.js file. This will be the file that instantiates the app.
 
-There are other folders inside this which have other parts of the application. Please go through each module to understand its functionality.
+There are other folders inside this which have other parts of the application. Please go through each module to understand its functionality. There is a detailed section about the angular app in README.md

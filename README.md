@@ -46,4 +46,18 @@ needs to be added directly before any Angular functions/modules. The Gulp tasks 
 
 ### Inspirations and References
 
-This is closely based on the boilerplate code posted by Jake Marsh on https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate
+To learn how I setup this app, please refer to SETUP.md.
+
+Also, this structure is closely based on the boilerplate code posted by (Jake Marsh) [https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate] and (Hyra)[https://github.com/Hyra/angular-gulp-browserify-livereload-boilerplate/tree/master/app/scripts]
+
+### How the Angular app works:
+
+**app/js/main.js**
+
+* Initializes all the code. 
+* We use `angular.bootstrap` in main.js because Angular will detect if it has been loaded into the browser more than once and only allow the first loaded script to be bootstrapped and will report a warning to the browser console for each of the subsequent scripts. This prevents strange results in applications, where otherwise multiple instances of Angular try to work on the DOM. Read more about this on https://docs.angularjs.org/guide/bootstrap
+
+**_index.js**
+
+* You will see that all modules; controllers, directives and services have an _index.js file. This is the main module on which all controllers, directives and services are mounted. Only this file is loaded in main.js using a `require` statement.
+* We use (`bulk-require`)[https://www.npmjs.com/package/bulk-require] to require the whole directory.

@@ -19,6 +19,7 @@
   "author": "Rizwan Iqbal <mailme@rizwaniqbal.com>",
   "license": "ISC",
   "devDependencies": {
+    "angular-ui-router": "^0.2.13",
     "browserify": "^9.0.3",
     "connect-livereload": "^0.5.3",
     "express": "^4.12.3",

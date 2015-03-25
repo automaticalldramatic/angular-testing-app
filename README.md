@@ -48,7 +48,7 @@ needs to be added directly before any Angular functions/modules. The Gulp tasks 
 
 To learn how I setup this app, please refer to SETUP.md.
 
-Also, this structure is closely based on the boilerplate code posted by (Jake Marsh) [https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate] and (Hyra)[https://github.com/Hyra/angular-gulp-browserify-livereload-boilerplate/tree/master/app/scripts]
+Also, this structure is closely based on the boilerplate code posted by [Jake Marsh](https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate) and [Hyra](https://github.com/Hyra/angular-gulp-browserify-livereload-boilerplate/tree/master/app/scripts)
 
 ### How the Angular app works:
 
@@ -60,4 +60,4 @@ Also, this structure is closely based on the boilerplate code posted by (Jake Ma
 **_index.js**
 
 * You will see that all modules; controllers, directives and services have an _index.js file. This is the main module on which all controllers, directives and services are mounted. Only this file is loaded in main.js using a `require` statement.
-* We use (`bulk-require`)[https://www.npmjs.com/package/bulk-require] to require the whole directory.
+* We use [`bulk-require`](https://www.npmjs.com/package/bulk-require) to require the whole directory.

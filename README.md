@@ -61,3 +61,15 @@ Also, this structure is closely based on the boilerplate code posted by [Jake Ma
 
 * You will see that all modules; controllers, directives and services have an _index.js file. This is the main module on which all controllers, directives and services are mounted. Only this file is loaded in main.js using a `require` statement.
 * We use [`bulk-require`](https://www.npmjs.com/package/bulk-require) to require the whole directory.
+
+**constants.js**
+
+* Define a simple object and use `module.export` to make it available on the app. This is also required in the `main.js` else there is no way angular will know about this file.
+
+**on_run.js*
+
+* This defines what runs. According to Angular documentation:
+
+	Run blocks are the closest thing in Angular to the main method. A run block is the code which needs to run to kickstart the application. It is executed after all of the services have been configured and the injector has been created. Run blocks typically contain code which is hard to unit-test, and for this reason should be declared in isolated modules, so that they can be ignored in the unit-tests.
+
+* I got more information from http://stackoverflow.com/questions/20663076/angularjs-app-run-documentation

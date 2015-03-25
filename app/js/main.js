@@ -25,5 +25,7 @@ angular.element(document).ready(function() {
 
 	angular.module('app').config(require('./routes'));
 
+	angular.module('app').run(require('./on_run'));
+
 	angular.bootstrap(document, ['app']);
 })

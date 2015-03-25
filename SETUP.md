@@ -20,6 +20,8 @@ npm install gulp browserify gulp-browserify gulp-rimraf gulp-concat gulp-jshint 
 
 The `--save-dev` flag saves the module in the local node_modules directory. You will see your `package.json` file change with entries of your dependencies. You can also run `npm init` before running the above command to provide some basic information about your app in your `package.json` file.
 
+Also, this is not a complete list of all modules that I will be adding. Please refer to the package.json file to see all the devDependencies am using.
+
 #### Step 3:
 ------------
 
@@ -62,3 +64,10 @@ Create the folder structure as shown. I have created the following folders under
 Also, create an index.html file. This will be your apps home page.
 
 Also, create a build directory. This will be the directory containing all your built files. Remember, we have ignored this also - because your prod build would be different from your staging and developer build files.
+
+#### Step 5: 
+------------
+
+Add some angular code to app/js/main.js file. This will be the file that instantiates the app.
+
+There are other folders inside this which have other parts of the application. Please go through each module to understand its functionality.

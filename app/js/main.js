@@ -21,6 +21,8 @@ angular.element(document).ready(function() {
 
 	window.app = angular.module('app', requires);
 
+	angular.module('app').constant('AppSettings', require('./constants'))
+
 	angular.module('app').config(require('./routes'));
 
 	angular.bootstrap(document, ['app']);

@@ -1,0 +1,36 @@
+{
+  "name": "angular_test_application",
+  "version": "0.0.0",
+  "description": "A test app to learn and perfect angular design; setup tests using Karma and its plugins and have a scalable architecture.",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma test run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:rizwaniqbal/angulartestapp.git"
+  },
+  "keywords": [
+    "angular",
+    "karma",
+    "browserify",
+    "sass"
+  ],
+  "author": "Rizwan Iqbal <mailme@rizwaniqbal.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "connect-livereload": "^0.5.3",
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-embedlr": "^0.5.2",
+    "gulp-jshint": "^1.9.4",
+    "gulp-livereload": "^3.8.0",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-util": "^3.0.4",
+    "tiny-lr": "^0.1.5"
+  }
+}

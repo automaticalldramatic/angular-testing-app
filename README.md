@@ -66,7 +66,7 @@ Also, this structure is closely based on the boilerplate code posted by [Jake Ma
 
 * Define a simple object and use `module.export` to make it available on the app. This is also required in the `main.js` else there is no way angular will know about this file.
 
-**on_run.js*
+**on_run.js**
 
 * This defines what runs. According to Angular documentation:
 

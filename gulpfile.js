@@ -1,22 +1,25 @@
-'use strict';
-
-var gulp           = require('gulp'),
-	jshint         = require('gulp-jshint'),
-	browserify     = require('gulp-browserify'),
-	uglify         = require('gulp-uglify'),
-	sass           = require('gulp-sass'),
+var gulp = require('gulp'),
+	gutil = require('gulp-util'),
+	jshint = require('gulp-jshint'),
+	browserify = require('gulp-browserify'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
 	rename         = require('gulp-rename'),
+	embedlr = require('gulp-embedlr'),
+	refresh = require('gulp-livereload'),
+	lrserver = require('tiny-lr')(),
+	express = require('express'),
+	livereload = require('connect-livereload'),
 	rimraf         = require('gulp-rimraf'),
-	ngAnnotate     = require('gulp-ng-annotate');
-
-/************************************************
-  Gulp Tasks
- ***********************************************/
+	livereloadport = 35729,
+	serverport = 5000;
+	clean = require('gulp-clean');
 
 // JSHint task
 gulp.task('lint', function() {
-	gulp.src('./app/js/**/*.js')
+	gulp.src('./app/js/*.js')
 	.pipe(jshint())
+	// You can look into pretty reporters as well, but that's another story
 	.pipe(jshint.reporter('default'));
 });
 
@@ -24,52 +27,51 @@ gulp.task('lint', function() {
 gulp.task('browserify', function() {
 	// Single point of entry (make sure not to src ALL your files, browserify will figure it out for you)
 	gulp.src(['app/js/main.js'])
-	.pipe(ngAnnotate())
 	.pipe(browserify({
 		insertGlobals: true,
 		debug: true
 	}))
-	// .pipe(uglify())
-	// .pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('build/js'));
-});
-
-// Styles task
-gulp.task('styles', function() {
-	gulp.src('app/styles/main.scss')
-	// The onerror handler prevents Gulp from crashing when you make a mistake in your SASS
-	.pipe(sass({style: 'compressed', onError: function(e) { console.log(e); } }))
+	// Bundle to a single file
+	// .pipe(concat('bundle.js'))
+	.pipe(uglify())
 	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('build/css/'));
+	// Output it to our dist folder
+	.pipe(gulp.dest('build/js/'));
 });
 
 // Views task
 gulp.task('views', function() {
 	// Get our index.html
-	gulp.src('app/index.html')
+	gulp.src('./app/index.html')
 	// And put it in the dist folder
 	.pipe(gulp.dest('build/'));
 
 	// Any other view files from app/views
 	gulp.src('./app/views/**/*')
 	// Will be put in the dist/views folder
-	.pipe(gulp.dest('build/views/'));
+	.pipe(gulp.dest('build/views/'))
+	.pipe(refresh(lrserver)); // Tell the lrserver to refresh
 });
 
-gulp.task('watch', function() {
+
+gulp.task('watch', ['lint'], function() {
 	// Watch our scripts
-	gulp.watch(['app/js/**/*.js'],[
+	gulp.watch(['app/js/*.js', 'app/js/**/*.js'],[
+		'views',
 		'lint',
 		'browserify'
 	]);
-	// Watch our styles
-	gulp.watch(['app/styles/**/*.scss'], [
-		'styles'
-	]);
-	// Watch our views
-	gulp.watch(['app/index.html', 'app/views/**/*.html'], [
-		'views'
-	]);
+});
+
+// Set up an express server (but not starting it yet)
+var server = express();
+// Add live reload
+server.use(livereload({port: livereloadport}));
+// Use our 'dist' folder as rootfolder
+server.use(express.static('./build'));
+// Because I like HTML5 pushstate .. this redirects everything back to our index.html
+server.all('/*', function(req, res) {
+	res.sendfile('index.html', { root: 'build' });
 });
 
 // Cleans up directory before deployment.
@@ -78,16 +80,16 @@ gulp.task('clean', function() {
 		.pipe(rimraf());
 });
 
-
-// The default task (called when you run `gulp` from cli)
-// gulp.task('default', ['watch']);
-
 gulp.task('default', ['clean'], function() {
-	gulp.start('browserify', 'lint', 'styles', 'views');
+	gulp.start('browserify', 'lint', 'views');
 });
 
-function errorHandler (error) {
-	console.log(error.toString());
-	console.log(error);
-	this.emit('end');
-}
+// Dev task
+gulp.task('dev', function() {
+	// Start webserver
+	// server.listen(serverport);
+	// Start live reload
+	// lrserver.listen(livereloadport);
+	// Run the watch task, to keep taps on changes
+	gulp.run('watch');
+});

@@ -1,4 +1,8 @@
-'use strict';
+(function () {
+   'use strict';
+}());
+
+var controllersModule = require('./_index');
 
 var WelcomeCtrl = function() {
 	// ViewModel
@@ -8,4 +12,4 @@ var WelcomeCtrl = function() {
 	vm.author = 'Rizwan Iqbal';
 };
 
-module.exports = WelcomeCtrl;
+controllersModule.controller('WelcomeCtrl', WelcomeCtrl);

@@ -1,19 +1,34 @@
+<!-- <!doctype html>
+<html class="no-js">
+  <head>
+	  <base href="/">
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	  <title ng-bind="pageTitle"></title>
+	  <meta name="description" content="">
+	  <meta name="viewport" content="width=device-width">
+
+	  <link rel="stylesheet" href="ata/build/css/main.min.css">
+  </head>
+  <body>
+
+	  <div ui-view></div>
+
+	  <script src="ata/build/js/main.min.js"></script>
+  </body>
+</html> -->
+
+
 <!doctype html>
-<html class="no-js" ng-app="myApp">
+<html lang="en" ng-app="app">
 	<head>
 		<base href="/">
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Angular testing App</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width">
+		<title>Some Title</title>
+		<link rel="stylesheet" href="css/main.min.css">
 	</head>
-	<body>
-		<div class="welcome" ui-view ng-controller='WelcomeCtrl as welcome'>
-			<h1>{{welcome.heading}}</h1>
-			<p>by</p>
-			<p>{{welcome.author}}</p>
-		</div>
-		<script src="ata/build/js/main.min.js"></script>
+	<body ng-controller='WelcomeCtrl as w' class="ng-cloak">
+		<h1>{{w.heading}}</h1>
+		<p>{{w.author}}</p>
+		<script src="js/main.js"></script>
 	</body>
 </html>

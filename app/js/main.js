@@ -5,21 +5,21 @@
 var angular = require('angular');
 
 // angular modules
-// require('angular-ui-router');
-// require('./templates');
-// require('./controllers/_index');
-// require('./services/_index');
-// require('./directives/_index');
+require('angular-ui-router');
+require('./templates');
+require('./controllers/_index');
+require('./services/_index');
+require('./directives/_index');
 
 // angular.element(document).ready(function() {
 
-// 	var requires = [
-// 		'ui.router',
-// 		'templates',
-// 		'app.controllers',
-// 		'app.services',
-// 		'app.directives'
-// 	];
+	var requires = [
+		'ui.router',
+		'templates',
+		'app.controllers',
+		'app.services',
+		'app.directives'
+	];
 
 // 	window.app = angular.module('app', requires);
 
@@ -35,9 +35,10 @@ var angular = require('angular');
 
 ////AM TESTING THIS - CANNOT GET MY CODE TO WORK OTHERWISE
 ///
-var WelcomeCtrl = require('./controllers/WelcomeCtrl'); // We can use our WelcomeCtrl.js as a module. Rainbows.
+// var WelcomeCtrl = require('./controllers/WelcomeCtrl'); // We can use our WelcomeCtrl.js as a module. Rainbows.
 
-var app = angular.module('myApp', []);
+var app = angular.module('app', requires);
 
+// angular.bootstrap(document, ['app']);
 // app.controller('WelcomeCtrl', ['$scope', WelcomeCtrl]);
-app.controller('WelcomeCtrl', WelcomeCtrl);
+// app.controller('WelcomeCtrl', WelcomeCtrl);
